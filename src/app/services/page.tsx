@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState, useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Search, ArrowUpDown, Scissors, Sparkles, Loader2 } from "lucide-react";
+import { Search, ArrowUpDown, Scissors, Sparkles, SlidersHorizontal, DollarSign } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ServiceCard } from "@/components/services/service-card";
@@ -17,6 +17,14 @@ const allCategories = [
   "Makeup",
   "Manicure & Pedicure",
   "Spa & Massage",
+  "Bridal & Packages",
+];
+
+const priceRanges = [
+  { label: "All Prices", value: "all" },
+  { label: "Under $75", value: "under-75" },
+  { label: "$75 - $150", value: "75-150" },
+  { label: "$150 & Above", value: "over-150" },
 ];
 
 function BrowseServicesContent() {
@@ -29,7 +37,10 @@ function BrowseServicesContent() {
   // Filters state
   const [searchTerm, setSearchTerm] = useState(searchParams.get("search") || "");
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get("category") || "All");
-  const [sortBy, setSortBy] = useState<"default" | "price-asc" | "price-desc">("default");
+  const [selectedPriceRange, setSelectedPriceRange] = useState("all");
+  const [sortBy, setSortBy] = useState<
+    "default" | "price-asc" | "price-desc" | "duration-asc" | "duration-desc"
+  >("default");
 
   useEffect(() => {
     async function fetchServices() {
@@ -73,14 +84,34 @@ function BrowseServicesContent() {
           s.serviceName.toLowerCase().includes(searchTerm.toLowerCase()) ||
           s.description.toLowerCase().includes(searchTerm.toLowerCase());
 
-        return matchesCategory && matchesSearch;
+        let matchesPrice = true;
+        if (selectedPriceRange === "under-75") {
+          matchesPrice = s.price < 75;
+        } else if (selectedPriceRange === "75-150") {
+          matchesPrice = s.price >= 75 && s.price <= 150;
+        } else if (selectedPriceRange === "over-150") {
+          matchesPrice = s.price > 150;
+        }
+
+        return matchesCategory && matchesSearch && matchesPrice;
       })
       .sort((a, b) => {
         if (sortBy === "price-asc") return a.price - b.price;
         if (sortBy === "price-desc") return b.price - a.price;
+        if (sortBy === "duration-asc") return a.duration - b.duration;
+        if (sortBy === "duration-desc") return b.duration - a.duration;
         return 0;
       });
-  }, [services, selectedCategory, searchTerm, sortBy]);
+  }, [services, selectedCategory, searchTerm, selectedPriceRange, sortBy]);
+
+  // Compute counts for each category
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { All: services.length };
+    for (const s of services) {
+      counts[s.category] = (counts[s.category] || 0) + 1;
+    }
+    return counts;
+  }, [services]);
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -94,71 +125,119 @@ function BrowseServicesContent() {
           Browse All Salon Services
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Explore our curated menu of hair, skin, and spa treatments. Select any service to view full details and book an appointment online.
+          Explore our extensive catalog of {services.length} luxury hair, skin, bridal, and body treatments. Select any service to reserve your preferred specialist and time slot.
         </p>
       </div>
 
       {/* Filter Controls Bar */}
       <div className="flex flex-col gap-4 rounded-xl border border-border/80 bg-card p-4 shadow-sm mb-8">
+        {/* Top Controls Row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="relative w-full sm:w-96">
-            <Search className="absolute left-3 top-3 size-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-2.5 size-4 text-muted-foreground" />
             <Input
-              placeholder="Search services by name..."
+              placeholder="Search by treatment or keyword (e.g. Balayage, Hydra, Massage)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 bg-background"
+              className="pl-9 bg-background text-xs"
             />
           </div>
 
-          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
-            <ArrowUpDown className="size-4 text-muted-foreground" />
+          <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+              <ArrowUpDown className="size-3.5" />
+              <span>Sort:</span>
+            </div>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-amber-600"
+              className="h-9 rounded-md border border-input bg-background px-3 py-1 text-xs shadow-xs focus:outline-none focus:ring-1 focus:ring-amber-600"
             >
               <option value="default">Default Order</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
+              <option value="duration-asc">Duration: Quickest First</option>
+              <option value="duration-desc">Duration: Longest First</option>
             </select>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-2 scrollbar-none">
+        {/* Category Pills Row with Counts */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-2 scrollbar-none border-t border-border/40">
+          <span className="text-[11px] font-semibold uppercase text-muted-foreground shrink-0 pr-1">
+            Category:
+          </span>
           {allCategories.map((cat) => {
             const isSelected = selectedCategory.toLowerCase() === cat.toLowerCase();
+            const count = categoryCounts[cat] || 0;
             return (
               <button
                 key={cat}
                 onClick={() => handleCategorySelect(cat)}
-                className={`shrink-0 rounded-full px-3.5 py-1 text-xs font-medium transition-colors ${
+                className={`shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-medium transition-all ${
                   isSelected
                     ? "bg-amber-700 text-white shadow-sm"
                     : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                 }`}
               >
-                {cat}
+                <span>{cat}</span>
+                {count > 0 && (
+                  <span
+                    className={`text-[10px] rounded-full px-1.5 py-0.2 ${
+                      isSelected
+                        ? "bg-amber-800 text-amber-100"
+                        : "bg-background/80 text-muted-foreground"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Price Budget Filter Pills */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 scrollbar-none">
+          <span className="text-[11px] font-semibold uppercase text-muted-foreground shrink-0 pr-1 flex items-center gap-1">
+            <DollarSign className="size-3" />
+            Budget:
+          </span>
+          {priceRanges.map((range) => {
+            const isSelected = selectedPriceRange === range.value;
+            return (
+              <button
+                key={range.value}
+                onClick={() => setSelectedPriceRange(range.value)}
+                className={`shrink-0 rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
+                  isSelected
+                    ? "bg-amber-100 text-amber-900 border border-amber-300 font-semibold"
+                    : "bg-background text-muted-foreground border border-border/60 hover:text-foreground"
+                }`}
+              >
+                {range.label}
               </button>
             );
           })}
         </div>
       </div>
 
+      {/* Results Metadata Bar */}
       <div className="mb-6 flex items-center justify-between text-xs text-muted-foreground">
         <span>
-          Showing <strong className="text-foreground">{filteredServices.length}</strong> active service{filteredServices.length === 1 ? "" : "s"}
+          Showing <strong className="text-foreground">{filteredServices.length}</strong> matching service{filteredServices.length === 1 ? "" : "s"}
         </span>
-        {(searchTerm || selectedCategory !== "All" || sortBy !== "default") && (
+        {(searchTerm || selectedCategory !== "All" || selectedPriceRange !== "all" || sortBy !== "default") && (
           <button
             onClick={() => {
               setSearchTerm("");
               handleCategorySelect("All");
+              setSelectedPriceRange("all");
               setSortBy("default");
             }}
-            className="text-amber-700 hover:underline"
+            className="text-amber-700 hover:underline font-medium"
           >
-            Reset Filters
+            Reset All Filters
           </button>
         )}
       </div>
@@ -179,7 +258,7 @@ function BrowseServicesContent() {
           <Sparkles className="mx-auto size-8 text-muted-foreground/60 mb-3" />
           <h3 className="font-semibold text-foreground">No matching services found</h3>
           <p className="mt-1 text-xs text-muted-foreground">
-            Try adjusting your search criteria or category filter.
+            Try adjusting your search criteria, price range, or category filter.
           </p>
           <Button
             variant="outline"
@@ -187,6 +266,7 @@ function BrowseServicesContent() {
             onClick={() => {
               setSearchTerm("");
               handleCategorySelect("All");
+              setSelectedPriceRange("all");
             }}
             className="mt-4"
           >

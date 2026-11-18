@@ -1,48 +1,54 @@
 import Link from "next/link";
-import { Scissors, Palette, Sparkles, Smile, Heart, Hand, Flower2 } from "lucide-react";
+import { Scissors, Palette, Sparkles, Smile, Heart, Hand, Flower2, Crown } from "lucide-react";
 
 const categories = [
   {
     name: "Haircut & Styling",
-    description: "Precision cuts, bespoke blowouts & bridal up-dos",
+    description: "Precision cuts, bespoke blowouts & styling",
     icon: Scissors,
-    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
+    serviceCount: "4 Treatments",
   },
   {
     name: "Hair Coloring",
-    description: "Balayage, gloss toner, foil highlights & color correction",
+    description: "Balayage, gloss toner, foil highlights & color melt",
     icon: Palette,
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
+    serviceCount: "4 Treatments",
   },
   {
     name: "Hair Treatment",
-    description: "Keratin smooth, olaplex bond builder & deep scalp therapy",
+    description: "Keratin smooth, olaplex bond builder & scalp detox",
     icon: Sparkles,
-    image: "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80",
+    serviceCount: "4 Treatments",
   },
   {
     name: "Facial & Skincare",
-    description: "Hydrafacials, anti-aging peels & microdermabrasion",
+    description: "Hydrafacials, 24K gold firming & diamond micropeels",
     icon: Smile,
-    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80",
+    serviceCount: "4 Treatments",
   },
   {
     name: "Makeup",
-    description: "Evening glam, editorial makeup & permanent lash lift",
+    description: "Evening glam, bridal trials & keratin lash lifts",
     icon: Heart,
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80",
+    serviceCount: "4 Treatments",
   },
   {
     name: "Manicure & Pedicure",
-    description: "Artisan gel nails, paraffin wax & luxury foot spa",
+    description: "Artisan gel nails, Russian manicures & herbal foot spa",
     icon: Hand,
-    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80",
+    serviceCount: "4 Treatments",
   },
   {
     name: "Spa & Massage",
-    description: "Swedish massage, hot stone therapy & body scrubs",
+    description: "Deep tissue, warm Himalayan salt stones & detox wraps",
     icon: Flower2,
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80",
+    serviceCount: "4 Treatments",
+  },
+  {
+    name: "Bridal & Packages",
+    description: "Royal bridal sanctuary, couples retreats & grooming packages",
+    icon: Crown,
+    serviceCount: "3 Packages",
   },
 ];
 
@@ -62,7 +68,7 @@ export function ServiceCategories() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {categories.map((cat) => {
             const Icon = cat.icon;
             return (
@@ -72,9 +78,15 @@ export function ServiceCategories() {
                 className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-border/80 bg-card p-5 transition-all duration-300 hover:shadow-md hover:border-amber-400/60"
               >
                 <div>
-                  <div className="flex size-11 items-center justify-center rounded-lg bg-amber-100 text-amber-800 transition-colors group-hover:bg-amber-700 group-hover:text-white">
-                    <Icon className="size-5" />
+                  <div className="flex items-center justify-between">
+                    <div className="flex size-11 items-center justify-center rounded-lg bg-amber-100 text-amber-800 transition-colors group-hover:bg-amber-700 group-hover:text-white">
+                      <Icon className="size-5" />
+                    </div>
+                    <span className="text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200/80 px-2.5 py-0.5 rounded-full">
+                      {cat.serviceCount}
+                    </span>
                   </div>
+
                   <h3 className="mt-4 font-semibold text-foreground group-hover:text-amber-800 transition-colors">
                     {cat.name}
                   </h3>
@@ -83,9 +95,9 @@ export function ServiceCategories() {
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-border/40 flex items-center text-xs font-semibold text-amber-700">
-                  <span>View Services</span>
-                  <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
+                <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs font-semibold text-amber-700">
+                  <span>Browse Category</span>
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             );

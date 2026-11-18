@@ -8,7 +8,7 @@ import type { IService } from "@/lib/types/service";
 async function getFeaturedServices(): Promise<IService[]> {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
-    const res = await fetch(`${apiUrl}/services/featured`, {
+    const res = await fetch(`${apiUrl}/services/featured?limit=16`, {
       cache: "no-store",
     });
     if (!res.ok) return [];
