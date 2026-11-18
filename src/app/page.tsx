@@ -1,4 +1,5 @@
 import { Banner } from "@/components/home/banner";
+import { MarqueeSection } from "@/components/home/marquee-section";
 import { FeaturedServices } from "@/components/home/featured-services";
 import { ServiceCategories } from "@/components/home/service-categories";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
@@ -24,6 +25,7 @@ export default async function HomePage() {
   return (
     <main className="min-h-screen">
       <Banner />
+      <MarqueeSection />
       <FeaturedServices services={featuredServices} />
       <ServiceCategories />
       <WhyChooseUs />
