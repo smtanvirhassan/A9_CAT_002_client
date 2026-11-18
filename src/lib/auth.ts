@@ -1,0 +1,55 @@
+import dns from "dns";
+import { betterAuth } from "better-auth";
+import { MongoClient } from "mongodb";
+import { mongodbAdapter } from "@better-auth/mongo-adapter";
+import { jwt } from "better-auth/plugins";
+
+try {
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+} catch (e) {
+  // Ignore in restricted environments
+}
+
+const client = new MongoClient(process.env.MONGODB_URI as string);
+const db = client.db("salonbook");
+
+export const auth = betterAuth({
+  database: mongodbAdapter(db, {
+    client,
+  }),
+  emailAndPassword: {
+    enabled: true,
+  },
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    },
+  },
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        defaultValue: "customer",
+        required: false,
+      },
+      isBlocked: {
+        type: "boolean",
+        defaultValue: false,
+        required: false,
+      },
+      phone: {
+        type: "string",
+        required: false,
+      },
+    },
+  },
+  plugins: [jwt()],
+  session: {
+    cookieCache: {
+      enabled: true,
+      strategy: "jwt",
+      maxAge: 7 * 24 * 60 * 60,
+    },
+  },
+});
