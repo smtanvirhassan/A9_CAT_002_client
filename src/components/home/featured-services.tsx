@@ -48,9 +48,12 @@ export function FeaturedServices({ services }: FeaturedServicesProps) {
           </div>
 
           <Link href="/services">
-            <Button variant="outline" className="group rounded-full px-5 text-sm font-medium">
+            <Button
+              variant="amber"
+              className="group rounded-full px-6 py-2.5 text-sm font-semibold shadow-md hover:shadow-lg hover:shadow-amber-700/20 transition-all duration-300"
+            >
               <span>Explore Complete Menu</span>
-              <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="ml-2 size-4 transition-transform duration-200 group-hover:translate-x-1.5" />
             </Button>
           </Link>
         </div>
@@ -92,11 +95,34 @@ export function FeaturedServices({ services }: FeaturedServicesProps) {
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {displayedServices.slice(0, 8).map((service) => (
-              <ServiceCard key={service._id} service={service} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {displayedServices.slice(0, 8).map((service) => (
+                <ServiceCard key={service._id} service={service} />
+              ))}
+            </div>
+
+            {/* Prominent Highlight CTA Banner */}
+            <div className="mt-14 flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-200 dark:border-amber-900/40 p-6 sm:p-8">
+              <div>
+                <h3 className="text-xl font-serif font-medium text-foreground">
+                  Looking for our complete treatment catalog?
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Explore all 31 luxury salon, hair artistry, aesthetician, and wellness experiences.
+                </p>
+              </div>
+              <Link href="/services" className="shrink-0">
+                <Button
+                  variant="amber"
+                  className="group rounded-full px-7 py-3 text-base font-semibold shadow-md hover:shadow-xl hover:shadow-amber-700/25 transition-all duration-300"
+                >
+                  <span>Explore Complete Menu</span>
+                  <ArrowRight className="ml-2 size-4.5 transition-transform duration-200 group-hover:translate-x-1.5" />
+                </Button>
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </section>
