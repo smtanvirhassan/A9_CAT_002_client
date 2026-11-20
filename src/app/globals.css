@@ -136,6 +136,30 @@
   p {
     @apply leading-relaxed;
   }
+  a,
+  a *,
+  button,
+  button *,
+  [role="button"],
+  [role="button"] *,
+  select,
+  summary,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  input[type="checkbox"],
+  input[type="radio"],
+  label[for] {
+    cursor: pointer;
+  }
+  button:disabled,
+  button:disabled *,
+  button[disabled],
+  button[disabled] *,
+  [aria-disabled="true"],
+  [aria-disabled="true"] * {
+    cursor: not-allowed !important;
+  }
 }
 
 @keyframes marquee {
