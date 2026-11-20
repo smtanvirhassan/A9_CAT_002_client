@@ -113,14 +113,14 @@ export default function AdminOverviewPage() {
             Monitor real-time customer bookings, manage salon service catalog, review customer accounts, and audit Stripe revenue.
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2.5">
           <Link href="/dashboard/admin/services">
-            <Button className="bg-amber-700 hover:bg-amber-800 text-white text-xs font-semibold">
+            <Button variant="amber" className="text-sm font-semibold px-4 shadow-sm">
               Manage Services
             </Button>
           </Link>
           <Link href="/dashboard/admin/appointments">
-            <Button variant="outline" className="border-stone-700 text-stone-200 hover:bg-stone-800 text-xs">
+            <Button variant="amber" className="text-sm font-semibold px-4 shadow-sm">
               Review Bookings
             </Button>
           </Link>

@@ -261,7 +261,7 @@ export default function ManageServicesPage() {
             Create, modify, toggle active availability, and upload photos for catalog services.
           </p>
         </div>
-        <Button onClick={openAddModal} className="bg-amber-700 hover:bg-amber-800 text-white text-xs font-semibold">
+        <Button onClick={openAddModal} variant="amber" className="text-sm font-semibold">
           <Plus className="mr-1.5 size-4" />
           Add New Service
         </Button>

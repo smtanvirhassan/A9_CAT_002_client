@@ -99,9 +99,9 @@ export default function CustomerOverviewPage() {
           </p>
         </div>
         <Link href="/services">
-          <Button className="bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold px-4 shadow">
+          <Button variant="amber" className="text-sm font-semibold px-4 shadow-sm">
             Book New Treatment
-            <ArrowRight className="ml-1.5 size-3.5" />
+            <ArrowRight className="ml-1.5 size-4" />
           </Button>
         </Link>
       </div>
