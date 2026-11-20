@@ -39,15 +39,21 @@ export function Banner() {
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
             <Link href="/services">
-              <Button size="lg" className="w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-white font-medium px-8 shadow-lg shadow-amber-900/40">
-                Explore Salon Services
+              <Button
+                size="lg"
+                className="w-full sm:w-auto bg-amber-700 hover:bg-amber-800 text-white font-semibold px-8 shadow-lg shadow-amber-950/50 rounded-full transition-all duration-200 hover:scale-[1.02]"
+              >
+                <span>Explore Salon Services</span>
                 <ArrowRight className="ml-2 size-4" />
               </Button>
             </Link>
             <Link href="/services?category=Haircut+%26+Styling">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto border-stone-600 text-stone-200 hover:bg-stone-800/80 hover:text-white">
-                <Scissors className="mr-2 size-4 text-amber-400" />
-                Popular Cuts & Color
+              <Button
+                size="lg"
+                className="w-full sm:w-auto bg-amber-700 hover:bg-amber-800 text-white font-semibold px-8 shadow-lg shadow-amber-950/50 rounded-full transition-all duration-200 hover:scale-[1.02]"
+              >
+                <Scissors className="mr-2 size-4 text-amber-200" />
+                <span>Popular Cuts & Color</span>
               </Button>
             </Link>
           </div>
