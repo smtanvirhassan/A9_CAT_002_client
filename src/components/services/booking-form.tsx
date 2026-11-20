@@ -222,41 +222,41 @@ export function BookingForm({ service }: BookingFormProps) {
       {/* Header Pricing & Duration */}
       <div className="flex items-center justify-between pb-4 border-b border-border/80">
         <div>
-          <span className="text-xs uppercase tracking-wider text-muted-foreground">Standard Base Fee</span>
+          <span className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Standard Base Fee</span>
           <p className="text-3xl font-serif font-bold text-amber-900">${service.price}</p>
         </div>
         <div className="text-right">
-          <span className="text-xs uppercase tracking-wider text-muted-foreground">Treatment Duration</span>
-          <p className="text-sm font-semibold text-foreground flex items-center gap-1 justify-end">
-            <Clock className="size-3.5 text-amber-600" />
+          <span className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Treatment Duration</span>
+          <p className="text-base font-semibold text-foreground flex items-center gap-1.5 justify-end mt-0.5">
+            <Clock className="size-4 text-amber-600" />
             {service.duration} mins
           </p>
         </div>
       </div>
 
       {service.status !== "active" ? (
-        <div className="mt-6 rounded-lg bg-amber-50 border border-amber-200 p-4 text-xs text-amber-900 flex items-start gap-2">
-          <AlertCircle className="size-4 shrink-0 text-amber-700 mt-0.5" />
+        <div className="mt-6 rounded-lg bg-amber-50 border border-amber-200 p-4 text-sm text-amber-900 flex items-start gap-2.5">
+          <AlertCircle className="size-5 shrink-0 text-amber-700 mt-0.5" />
           <span>This service is currently unavailable for online booking. Please check back later.</span>
         </div>
       ) : user?.role === "admin" ? (
-        <div className="mt-6 rounded-lg bg-amber-50 border border-amber-200 p-4 text-xs text-amber-900 flex items-start gap-2">
-          <AlertCircle className="size-4 shrink-0 text-amber-700 mt-0.5" />
+        <div className="mt-6 rounded-lg bg-amber-50 border border-amber-200 p-4 text-sm text-amber-900 flex items-start gap-2.5">
+          <AlertCircle className="size-5 shrink-0 text-amber-700 mt-0.5" />
           <span>You are logged in as an <strong>Administrator</strong>. Admins cannot submit customer booking requests.</span>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="mt-6 space-y-5">
           {errorMessage && (
-            <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-3 text-xs text-destructive flex items-start gap-2">
-              <AlertCircle className="size-4 shrink-0 mt-0.5" />
+            <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-3 text-sm text-destructive flex items-start gap-2">
+              <AlertCircle className="size-4.5 shrink-0 mt-0.5" />
               <span>{errorMessage}</span>
             </div>
           )}
 
           {/* 1. Preferred Date */}
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
-              <Calendar className="size-3.5 text-amber-600" />
+            <label className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
+              <Calendar className="size-4 text-amber-600" />
               <span>1. Select Appointment Date *</span>
             </label>
             <div className="relative">
@@ -266,22 +266,22 @@ export function BookingForm({ service }: BookingFormProps) {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
-                className="bg-background text-xs"
+                className="bg-background text-sm h-10"
               />
             </div>
           </div>
 
           {/* 2. Time Slot Option */}
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
-              <Clock className="size-3.5 text-amber-600" />
+            <label className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
+              <Clock className="size-4 text-amber-600" />
               <span>2. Available Time Slot *</span>
             </label>
             <select
               value={timeSlot}
               onChange={(e) => setTimeSlot(e.target.value)}
               required
-              className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-xs shadow-xs focus:outline-none focus:ring-1 focus:ring-amber-600"
+              className="w-full h-10 rounded-md border border-input bg-background px-3 py-1.5 text-sm shadow-xs focus:outline-none focus:ring-1 focus:ring-amber-600"
             >
               {timeSlots.map((slot) => (
                 <option key={slot} value={slot}>
@@ -293,15 +293,15 @@ export function BookingForm({ service }: BookingFormProps) {
 
           {/* 3. Specialist Tier Option */}
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-2 flex items-center gap-1.5">
-              <Crown className="size-3.5 text-amber-600" />
+            <label className="block text-sm font-semibold text-foreground mb-2 flex items-center gap-1.5">
+              <Crown className="size-4 text-amber-600" />
               <span>3. Preferred Specialist Tier</span>
             </label>
             <div className="space-y-2">
               {specialistTiers.map((tier) => (
                 <label
                   key={tier.id}
-                  className={`flex items-start gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                  className={`flex items-start gap-3 p-3 rounded-lg border text-sm cursor-pointer transition-colors ${
                     selectedSpecialist === tier.id
                       ? "bg-amber-50/80 border-amber-400 text-amber-950 font-medium"
                       : "bg-background border-border/80 hover:bg-muted/40"
@@ -313,11 +313,11 @@ export function BookingForm({ service }: BookingFormProps) {
                     value={tier.id}
                     checked={selectedSpecialist === tier.id}
                     onChange={() => setSelectedSpecialist(tier.id)}
-                    className="mt-0.5 text-amber-700 focus:ring-amber-600"
+                    className="mt-1 text-amber-700 focus:ring-amber-600"
                   />
                   <div className="flex-1">
-                    <p className="font-semibold text-foreground">{tier.name}</p>
-                    <p className="text-[11px] text-muted-foreground">{tier.note}</p>
+                    <p className="font-semibold text-foreground text-sm">{tier.name}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{tier.note}</p>
                   </div>
                 </label>
               ))}
@@ -326,35 +326,35 @@ export function BookingForm({ service }: BookingFormProps) {
 
           {/* 4. Luxury Add-On Treatments Option */}
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-2 flex items-center gap-1.5">
-              <Sparkles className="size-3.5 text-amber-600" />
+            <label className="block text-sm font-semibold text-foreground mb-2 flex items-center gap-1.5">
+              <Sparkles className="size-4 text-amber-600" />
               <span>4. Luxury Add-On Treatments (Optional)</span>
             </label>
-            <div className="space-y-1.5">
+            <div className="space-y-2">
               {availableAddOns.map((addOn) => {
                 const isChecked = selectedAddOns.includes(addOn.id);
                 return (
                   <label
                     key={addOn.id}
-                    className={`flex items-center justify-between p-2 rounded-lg border text-xs cursor-pointer transition-colors ${
+                    className={`flex items-center justify-between p-2.5 rounded-lg border text-sm cursor-pointer transition-colors ${
                       isChecked
                         ? "bg-amber-50/70 border-amber-300 text-amber-950"
                         : "bg-background border-border/70 hover:bg-muted/40"
                     }`}
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2.5">
                       <input
                         type="checkbox"
                         checked={isChecked}
                         onChange={() => toggleAddOn(addOn.id)}
-                        className="rounded text-amber-700 focus:ring-amber-600"
+                        className="rounded text-amber-700 focus:ring-amber-600 size-4"
                       />
                       <div>
-                        <p className="font-medium text-foreground">{addOn.name}</p>
-                        <p className="text-[10px] text-muted-foreground">{addOn.desc}</p>
+                        <p className="font-medium text-foreground text-sm">{addOn.name}</p>
+                        <p className="text-xs text-muted-foreground">{addOn.desc}</p>
                       </div>
                     </div>
-                    <span className="font-bold text-amber-800 text-[11px]">
+                    <span className="font-bold text-amber-800 text-sm">
                       +${addOn.price}
                     </span>
                   </label>
@@ -366,14 +366,14 @@ export function BookingForm({ service }: BookingFormProps) {
           {/* 5. Hospitality & Comfort Preferences */}
           <div className="pt-2 border-t border-border/60 space-y-3">
             <div>
-              <label className="block text-xs font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
-                <Coffee className="size-3.5 text-amber-600" />
+              <label className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
+                <Coffee className="size-4 text-amber-600" />
                 <span>5. Complimentary Guest Refreshment</span>
               </label>
               <select
                 value={refreshment}
                 onChange={(e) => setRefreshment(e.target.value)}
-                className="w-full h-8 rounded-md border border-input bg-background px-3 py-1 text-xs shadow-xs focus:outline-none focus:ring-1 focus:ring-amber-600"
+                className="w-full h-10 rounded-md border border-input bg-background px-3 py-1.5 text-sm shadow-xs focus:outline-none focus:ring-1 focus:ring-amber-600"
               >
                 {refreshmentOptions.map((opt) => (
                   <option key={opt} value={opt}>
@@ -383,15 +383,15 @@ export function BookingForm({ service }: BookingFormProps) {
               </select>
             </div>
 
-            <label className="flex items-center gap-2 text-xs text-foreground cursor-pointer pt-1">
+            <label className="flex items-center gap-2.5 text-sm text-foreground cursor-pointer pt-1">
               <input
                 type="checkbox"
                 checked={silentAppointment}
                 onChange={(e) => setSilentAppointment(e.target.checked)}
-                className="rounded text-amber-700 focus:ring-amber-600"
+                className="rounded text-amber-700 focus:ring-amber-600 size-4"
               />
-              <span className="flex items-center gap-1">
-                <VolumeX className="size-3.5 text-muted-foreground" />
+              <span className="flex items-center gap-1.5">
+                <VolumeX className="size-4 text-muted-foreground" />
                 Quiet Treatment (Minimal conversation, full peaceful relaxation)
               </span>
             </label>
@@ -399,8 +399,8 @@ export function BookingForm({ service }: BookingFormProps) {
 
           {/* 6. Special Requests */}
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
-              <MessageSquare className="size-3.5 text-amber-600" />
+            <label className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
+              <MessageSquare className="size-4 text-amber-600" />
               <span>Special Notes / Hair & Skin Details (Optional)</span>
             </label>
             <Textarea
@@ -408,12 +408,12 @@ export function BookingForm({ service }: BookingFormProps) {
               placeholder="e.g. scalp sensitivity, hair inspiration, allergies..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="resize-none text-xs bg-background"
+              className="resize-none text-sm bg-background"
             />
           </div>
 
           {/* Summary Box */}
-          <div className="rounded-lg bg-amber-50/60 border border-amber-200/80 p-3.5 space-y-1 text-xs text-amber-950">
+          <div className="rounded-lg bg-amber-50/70 border border-amber-200/80 p-4 space-y-1.5 text-sm text-amber-950">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Base Treatment:</span>
               <span>${service.price}</span>
@@ -430,7 +430,7 @@ export function BookingForm({ service }: BookingFormProps) {
                 <span>+${addOnsTotal}</span>
               </div>
             )}
-            <div className="pt-2 border-t border-amber-200 flex justify-between font-bold text-sm text-amber-900">
+            <div className="pt-2 border-t border-amber-200 flex justify-between font-bold text-base text-amber-900">
               <span>Estimated Total:</span>
               <span>${estimatedTotal}</span>
             </div>
@@ -439,7 +439,7 @@ export function BookingForm({ service }: BookingFormProps) {
           <Button
             type="submit"
             disabled={submitting}
-            className="w-full bg-amber-700 hover:bg-amber-800 text-white font-medium py-2.5 shadow-md"
+            className="w-full bg-amber-700 hover:bg-amber-800 text-white font-semibold py-3 text-base shadow-md"
           >
             {submitting ? (
               <>
@@ -451,7 +451,7 @@ export function BookingForm({ service }: BookingFormProps) {
             )}
           </Button>
 
-          <p className="text-center text-[11px] text-muted-foreground pt-1">
+          <p className="text-center text-xs text-muted-foreground pt-1">
             Appointments start as <strong>Pending</strong>. You will be able to pay securely via Stripe once the salon confirms your slot.
           </p>
         </form>

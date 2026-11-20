@@ -117,41 +117,41 @@ function BrowseServicesContent() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="mb-8">
-        <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
-          <Scissors className="size-3.5" />
+        <div className="inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-wider text-amber-700 mb-2">
+          <Scissors className="size-4" />
           <span>Service Directory</span>
         </div>
         <h1 className="text-3xl font-serif font-light tracking-tight text-foreground sm:text-4xl">
           Browse All Salon Services
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-2 text-base text-muted-foreground">
           Explore our extensive catalog of {services.length} luxury hair, skin, bridal, and body treatments. Select any service to reserve your preferred specialist and time slot.
         </p>
       </div>
 
       {/* Filter Controls Bar */}
-      <div className="flex flex-col gap-4 rounded-xl border border-border/80 bg-card p-4 shadow-sm mb-8">
+      <div className="flex flex-col gap-4 rounded-xl border border-border/80 bg-card p-5 shadow-sm mb-8">
         {/* Top Controls Row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="relative w-full sm:w-96">
-            <Search className="absolute left-3 top-2.5 size-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-3 size-4 text-muted-foreground" />
             <Input
               placeholder="Search by treatment or keyword (e.g. Balayage, Hydra, Massage)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 bg-background text-xs"
+              className="pl-9.5 bg-background text-sm h-10"
             />
           </div>
 
           <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <ArrowUpDown className="size-3.5" />
+            <div className="flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
+              <ArrowUpDown className="size-4" />
               <span>Sort:</span>
             </div>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="h-9 rounded-md border border-input bg-background px-3 py-1 text-xs shadow-xs focus:outline-none focus:ring-1 focus:ring-amber-600"
+              className="h-10 rounded-md border border-input bg-background px-3 py-1.5 text-sm shadow-xs focus:outline-none focus:ring-1 focus:ring-amber-600"
             >
               <option value="default">Default Order</option>
               <option value="price-asc">Price: Low to High</option>
@@ -163,8 +163,8 @@ function BrowseServicesContent() {
         </div>
 
         {/* Category Pills Row with Counts */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-2 scrollbar-none border-t border-border/40">
-          <span className="text-[11px] font-semibold uppercase text-muted-foreground shrink-0 pr-1">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1.5 pt-2.5 scrollbar-none border-t border-border/40">
+          <span className="text-xs font-semibold uppercase text-muted-foreground shrink-0 pr-1">
             Category:
           </span>
           {allCategories.map((cat) => {
@@ -174,7 +174,7 @@ function BrowseServicesContent() {
               <button
                 key={cat}
                 onClick={() => handleCategorySelect(cat)}
-                className={`shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-medium transition-all ${
+                className={`shrink-0 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
                   isSelected
                     ? "bg-amber-700 text-white shadow-sm"
                     : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
@@ -183,7 +183,7 @@ function BrowseServicesContent() {
                 <span>{cat}</span>
                 {count > 0 && (
                   <span
-                    className={`text-[10px] rounded-full px-1.5 py-0.2 ${
+                    className={`text-xs rounded-full px-2 py-0.2 ${
                       isSelected
                         ? "bg-amber-800 text-amber-100"
                         : "bg-background/80 text-muted-foreground"
@@ -199,8 +199,8 @@ function BrowseServicesContent() {
 
         {/* Price Budget Filter Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 scrollbar-none">
-          <span className="text-[11px] font-semibold uppercase text-muted-foreground shrink-0 pr-1 flex items-center gap-1">
-            <DollarSign className="size-3" />
+          <span className="text-xs font-semibold uppercase text-muted-foreground shrink-0 pr-1 flex items-center gap-1">
+            <DollarSign className="size-3.5" />
             Budget:
           </span>
           {priceRanges.map((range) => {
@@ -209,7 +209,7 @@ function BrowseServicesContent() {
               <button
                 key={range.value}
                 onClick={() => setSelectedPriceRange(range.value)}
-                className={`shrink-0 rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
+                className={`shrink-0 rounded-md px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors ${
                   isSelected
                     ? "bg-amber-100 text-amber-900 border border-amber-300 font-semibold"
                     : "bg-background text-muted-foreground border border-border/60 hover:text-foreground"
@@ -223,7 +223,7 @@ function BrowseServicesContent() {
       </div>
 
       {/* Results Metadata Bar */}
-      <div className="mb-6 flex items-center justify-between text-xs text-muted-foreground">
+      <div className="mb-6 flex items-center justify-between text-sm text-muted-foreground">
         <span>
           Showing <strong className="text-foreground">{filteredServices.length}</strong> matching service{filteredServices.length === 1 ? "" : "s"}
         </span>

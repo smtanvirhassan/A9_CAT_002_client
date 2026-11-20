@@ -21,8 +21,8 @@ export function Banner() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-semibold text-amber-300 backdrop-blur-md">
-            <Sparkles className="size-3.5" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm font-semibold text-amber-300 backdrop-blur-md">
+            <Sparkles className="size-4" />
             <span>Luxury Hair, Beauty & Wellness Treatments</span>
           </div>
 
@@ -53,18 +53,18 @@ export function Banner() {
           </div>
 
           {/* Highlights / Badges */}
-          <div className="grid grid-cols-3 gap-4 pt-8 border-t border-stone-800/80 text-xs text-stone-300">
+          <div className="grid grid-cols-3 gap-6 pt-8 border-t border-stone-800/80 text-sm text-stone-300">
             <div>
-              <p className="font-bold text-lg text-amber-300">100%</p>
-              <p className="text-stone-400">Certified Stylists</p>
+              <p className="font-bold text-2xl text-amber-300">100%</p>
+              <p className="text-stone-300 font-medium mt-0.5">Certified Stylists</p>
             </div>
             <div>
-              <p className="font-bold text-lg text-amber-300">Instant</p>
-              <p className="text-stone-400">Online Booking</p>
+              <p className="font-bold text-2xl text-amber-300">Instant</p>
+              <p className="text-stone-300 font-medium mt-0.5">Online Booking</p>
             </div>
             <div>
-              <p className="font-bold text-lg text-amber-300">4.9 ★</p>
-              <p className="text-stone-400">Client Reviews</p>
+              <p className="font-bold text-2xl text-amber-300">4.9 ★</p>
+              <p className="text-stone-300 font-medium mt-0.5">Client Reviews</p>
             </div>
           </div>
         </div>

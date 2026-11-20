@@ -63,7 +63,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "group relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ease-out",
+                      "group relative inline-flex items-center px-4 py-2 text-sm sm:text-base font-medium rounded-full transition-all duration-300 ease-out",
                       isActive
                         ? "text-amber-900 bg-amber-100/90 font-semibold shadow-xs"
                         : "text-muted-foreground hover:text-amber-900 hover:bg-amber-50/80 hover:shadow-xs"
@@ -100,9 +100,9 @@ export function Navbar() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium rounded-full px-3.5 transition-all duration-200 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-900 hover:shadow-xs"
+                  className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium rounded-full px-4 transition-all duration-200 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-900 hover:shadow-xs"
                 >
-                  <LayoutDashboard className="size-3.5 text-amber-700" />
+                  <LayoutDashboard className="size-4 text-amber-700" />
                   Dashboard
                 </Button>
               </Link>
@@ -124,15 +124,15 @@ export function Navbar() {
                     </button>
                   }
                 />
-                <PopoverContent align="end" className="w-64 p-4 shadow-xl rounded-2xl border-border/80">
+                <PopoverContent align="end" className="w-68 p-4 shadow-xl rounded-2xl border-border/80">
                   <PopoverHeader className="pb-3 border-b border-border/60">
-                    <PopoverTitle className="font-semibold text-foreground truncate">
+                    <PopoverTitle className="font-semibold text-foreground text-base truncate">
                       {user.name}
                     </PopoverTitle>
                     <PopoverDescription className="text-xs text-muted-foreground truncate">
                       {user.email}
                     </PopoverDescription>
-                    <span className="inline-block mt-1.5 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200/80 w-fit">
+                    <span className="inline-block mt-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200/80 w-fit">
                       {user.role === "admin" ? "Administrator" : "Customer"}
                     </span>
                   </PopoverHeader>
@@ -140,14 +140,14 @@ export function Navbar() {
                   <div className="mt-3 flex flex-col gap-1">
                     <Link
                       href={dashboardHref}
-                      className="flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium text-foreground hover:bg-amber-50 hover:text-amber-900 rounded-lg transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-foreground hover:bg-amber-50 hover:text-amber-900 rounded-lg transition-colors"
                     >
                       <LayoutDashboard className="size-4 text-amber-700" />
                       Dashboard
                     </Link>
                     <Link
                       href={`${dashboardHref}/profile`}
-                      className="flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium text-foreground hover:bg-amber-50 hover:text-amber-900 rounded-lg transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-foreground hover:bg-amber-50 hover:text-amber-900 rounded-lg transition-colors"
                     >
                       <User className="size-4 text-amber-700" />
                       My Profile
@@ -155,7 +155,7 @@ export function Navbar() {
                     {user.role !== "admin" && (
                       <Link
                         href="/dashboard/customer/appointments"
-                        className="flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium text-foreground hover:bg-amber-50 hover:text-amber-900 rounded-lg transition-colors"
+                        className="flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-foreground hover:bg-amber-50 hover:text-amber-900 rounded-lg transition-colors"
                       >
                         <Calendar className="size-4 text-amber-700" />
                         My Appointments
@@ -163,7 +163,7 @@ export function Navbar() {
                     )}
                     <button
                       onClick={handleSignout}
-                      className="flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium text-destructive hover:bg-destructive/10 rounded-lg transition-colors w-full text-left mt-1 border-t border-border/50 pt-2.5"
+                      className="flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 rounded-lg transition-colors w-full text-left mt-1 border-t border-border/50 pt-2.5"
                     >
                       <LogOut className="size-4" />
                       Sign Out
@@ -178,7 +178,7 @@ export function Navbar() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-xs font-medium rounded-full px-4 text-muted-foreground hover:text-amber-900 hover:bg-amber-50/80 transition-all duration-200"
+                  className="text-sm font-medium rounded-full px-4 text-muted-foreground hover:text-amber-900 hover:bg-amber-50/80 transition-all duration-200"
                 >
                   Sign In
                 </Button>
@@ -186,7 +186,7 @@ export function Navbar() {
               <Link href="/signup">
                 <Button
                   size="sm"
-                  className="bg-gradient-to-r from-amber-700 to-amber-800 hover:from-amber-800 hover:to-amber-900 text-white text-xs font-semibold rounded-full px-4 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
+                  className="bg-gradient-to-r from-amber-700 to-amber-800 hover:from-amber-800 hover:to-amber-900 text-white text-sm font-semibold rounded-full px-5 py-2 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200"
                 >
                   Sign Up
                 </Button>

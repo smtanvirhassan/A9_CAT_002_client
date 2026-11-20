@@ -57,13 +57,13 @@ export function ServiceCategories() {
     <section className="py-16 sm:py-20 bg-muted/30 border-y border-border/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-semibold uppercase tracking-wider text-amber-700">
+          <span className="text-sm font-semibold uppercase tracking-wider text-amber-700">
             Explore By Speciality
           </span>
           <h2 className="mt-2 text-3xl font-serif font-light tracking-tight text-foreground sm:text-4xl">
             Salon Service Categories
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
+          <p className="mt-3 text-base text-muted-foreground">
             Browse our full catalog of professional beauty, grooming, and rejuvenation services tailored to your aesthetic goals.
           </p>
         </div>
@@ -82,20 +82,20 @@ export function ServiceCategories() {
                     <div className="flex size-11 items-center justify-center rounded-lg bg-amber-100 text-amber-800 transition-colors group-hover:bg-amber-700 group-hover:text-white">
                       <Icon className="size-5" />
                     </div>
-                    <span className="text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200/80 px-2.5 py-0.5 rounded-full">
+                    <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200/80 px-2.5 py-0.5 rounded-full">
                       {cat.serviceCount}
                     </span>
                   </div>
 
-                  <h3 className="mt-4 font-semibold text-foreground group-hover:text-amber-800 transition-colors">
+                  <h3 className="mt-4 font-semibold text-foreground text-lg group-hover:text-amber-800 transition-colors">
                     {cat.name}
                   </h3>
-                  <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
                     {cat.description}
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs font-semibold text-amber-700">
+                <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-sm font-semibold text-amber-700">
                   <span>Browse Category</span>
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </div>

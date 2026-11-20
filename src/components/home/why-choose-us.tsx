@@ -59,13 +59,13 @@ export function WhyChooseUs() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-semibold uppercase tracking-wider text-amber-700">
+          <span className="text-sm font-semibold uppercase tracking-wider text-amber-700">
             The SalonBook Standard
           </span>
           <h2 className="mt-2 text-3xl font-serif font-light tracking-tight text-foreground sm:text-4xl">
             Why Discerning Clients Choose Us
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+          <p className="mt-3 text-base text-muted-foreground leading-relaxed">
             We believe a salon visit should be more than an appointment — it should be an oasis of relaxation, craftsmanship, and personal transformation.
           </p>
         </div>
@@ -79,11 +79,11 @@ export function WhyChooseUs() {
                 key={item.title}
                 className="flex flex-col rounded-xl border border-border/70 bg-card p-6 shadow-xs transition-all duration-300 hover:shadow-md hover:border-amber-400/50"
               >
-                <div className="flex size-10 items-center justify-center rounded-lg bg-amber-100 text-amber-800 mb-4">
+                <div className="flex size-11 items-center justify-center rounded-lg bg-amber-100 text-amber-800 mb-4">
                   <Icon className="size-5" />
                 </div>
-                <h3 className="font-semibold text-foreground text-sm mb-2">{item.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                <h3 className="font-semibold text-foreground text-base mb-2">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
               </div>
             );
           })}
@@ -93,10 +93,10 @@ export function WhyChooseUs() {
         <div className="mt-12">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-xl font-serif font-medium text-foreground">
+              <h3 className="text-2xl font-serif font-medium text-foreground">
                 Stories From Our Cherished Guests
               </h3>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-sm text-muted-foreground mt-1">
                 Rated 4.9/5 stars across 2,500+ verified customer appointments
               </p>
             </div>
@@ -112,28 +112,28 @@ export function WhyChooseUs() {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-1 text-amber-500">
                       {Array.from({ length: t.rating }).map((_, i) => (
-                        <Star key={i} className="size-3.5 fill-amber-500" />
+                        <Star key={i} className="size-4 fill-amber-500" />
                       ))}
                     </div>
                     <Quote className="size-5 text-amber-300/80" />
                   </div>
 
-                  <p className="text-xs font-serif italic text-stone-700 leading-relaxed mb-6">
+                  <p className="text-sm font-serif italic text-stone-800 leading-relaxed mb-6">
                     &ldquo;{t.quote}&rdquo;
                   </p>
                 </div>
 
                 <div className="pt-4 border-t border-amber-200/50 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="size-9 rounded-full bg-amber-200/80 flex items-center justify-center font-bold text-amber-900 text-xs shadow-xs">
+                    <div className="size-10 rounded-full bg-amber-200/80 flex items-center justify-center font-bold text-amber-900 text-sm shadow-xs">
                       {t.initials}
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-foreground">{t.author}</p>
-                      <p className="text-[10px] text-muted-foreground">{t.role}</p>
+                      <p className="text-sm font-semibold text-foreground">{t.author}</p>
+                      <p className="text-xs text-muted-foreground">{t.role}</p>
                     </div>
                   </div>
-                  <span className="text-[10px] font-medium text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded-md hidden sm:inline-block">
+                  <span className="text-xs font-medium text-amber-800 bg-amber-100/80 px-2.5 py-1 rounded-md hidden sm:inline-block">
                     {t.service}
                   </span>
                 </div>
