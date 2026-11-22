@@ -34,7 +34,6 @@ function BrowseServicesContent() {
   const [services, setServices] = useState<IService[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Filters state
   const [searchTerm, setSearchTerm] = useState(searchParams.get("search") || "");
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get("category") || "All");
   const [selectedPriceRange, setSelectedPriceRange] = useState("all");
@@ -104,7 +103,6 @@ function BrowseServicesContent() {
       });
   }, [services, selectedCategory, searchTerm, selectedPriceRange, sortBy]);
 
-  // Compute counts for each category
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { All: services.length };
     for (const s of services) {
@@ -115,7 +113,6 @@ function BrowseServicesContent() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      {/* Header */}
       <div className="mb-8">
         <div className="inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-wider text-amber-700 mb-2">
           <Scissors className="size-4" />
@@ -129,9 +126,7 @@ function BrowseServicesContent() {
         </p>
       </div>
 
-      {/* Filter Controls Bar */}
       <div className="flex flex-col gap-4 rounded-xl border border-border/80 bg-card p-5 shadow-sm mb-8">
-        {/* Top Controls Row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="relative w-full sm:w-96">
             <Search className="absolute left-3 top-3 size-4 text-muted-foreground" />
@@ -162,7 +157,6 @@ function BrowseServicesContent() {
           </div>
         </div>
 
-        {/* Category Pills Row with Counts */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1.5 pt-2.5 scrollbar-none border-t border-border/40">
           <span className="text-xs font-semibold uppercase text-muted-foreground shrink-0 pr-1">
             Category:
@@ -197,7 +191,6 @@ function BrowseServicesContent() {
           })}
         </div>
 
-        {/* Price Budget Filter Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 scrollbar-none">
           <span className="text-xs font-semibold uppercase text-muted-foreground shrink-0 pr-1 flex items-center gap-1">
             <DollarSign className="size-3.5" />
@@ -222,7 +215,6 @@ function BrowseServicesContent() {
         </div>
       </div>
 
-      {/* Results Metadata Bar */}
       <div className="mb-6 flex items-center justify-between text-sm text-muted-foreground">
         <span>
           Showing <strong className="text-foreground">{filteredServices.length}</strong> matching service{filteredServices.length === 1 ? "" : "s"}

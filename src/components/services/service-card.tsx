@@ -11,7 +11,6 @@ interface ServiceCardProps {
 export function ServiceCard({ service }: ServiceCardProps) {
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-xl border border-border/80 bg-card shadow-sm transition-all duration-300 hover:shadow-md hover:border-amber-400/50">
-      {/* Service Image */}
       <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-muted">
         <Image
           src={service.image}
@@ -29,7 +28,6 @@ export function ServiceCard({ service }: ServiceCardProps) {
         </span>
       </div>
 
-      {/* Card Content */}
       <div className="flex flex-1 flex-col justify-between p-5">
         <div>
           <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-amber-800 line-clamp-1">
@@ -46,7 +44,6 @@ export function ServiceCard({ service }: ServiceCardProps) {
           </p>
         </div>
 
-        {/* Action Button */}
         <div className="mt-5 pt-3.5 border-t border-border/50">
           <Link href={`/services/${service._id}`} className="block">
             <Button

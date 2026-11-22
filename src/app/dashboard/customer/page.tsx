@@ -85,7 +85,6 @@ export default function CustomerOverviewPage() {
 
   return (
     <div className="space-y-8">
-      {/* Welcome Banner */}
       <div className="rounded-2xl border border-amber-200/80 bg-gradient-to-r from-amber-900 to-stone-900 p-6 sm:p-8 text-white shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <span className="text-xs uppercase tracking-wider text-amber-300 font-semibold">
@@ -106,7 +105,6 @@ export default function CustomerOverviewPage() {
         </Link>
       </div>
 
-      {/* Metrics Statistics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map((card) => {
           const Icon = card.icon;
@@ -132,7 +130,6 @@ export default function CustomerOverviewPage() {
         })}
       </div>
 
-      {/* Recent Appointments Preview */}
       <div className="rounded-2xl border border-border/80 bg-card p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-serif font-semibold text-foreground">

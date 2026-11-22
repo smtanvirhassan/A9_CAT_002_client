@@ -6,7 +6,6 @@ import { headers } from "next/headers";
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Protect /services/[id] and /dashboard routes
   const isProtectedService = pathname.startsWith("/services/") && pathname !== "/services";
   const isDashboard = pathname.startsWith("/dashboard");
 
@@ -23,7 +22,6 @@ export async function proxy(request: NextRequest) {
         return NextResponse.redirect(loginUrl);
       }
 
-      // Role check for dashboard
       if (pathname.startsWith("/dashboard/admin") && (user as any).role !== "admin") {
         return NextResponse.redirect(new URL("/dashboard/customer", request.url));
       }

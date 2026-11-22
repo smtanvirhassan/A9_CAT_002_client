@@ -103,7 +103,6 @@ export function BookingForm({ service }: BookingFormProps) {
   const { data: session } = authClient.useSession();
   const user = session?.user as any;
 
-  // Form states
   const [date, setDate] = useState("");
   const [timeSlot, setTimeSlot] = useState(timeSlots[0]);
   const [selectedSpecialist, setSelectedSpecialist] = useState(specialistTiers[0].id);
@@ -116,7 +115,6 @@ export function BookingForm({ service }: BookingFormProps) {
 
   const todayStr = new Date().toISOString().split("T")[0];
 
-  // Pricing calculations
   const specialistFee = useMemo(() => {
     const tier = specialistTiers.find((t) => t.id === selectedSpecialist);
     return tier ? tier.fee : 0;
@@ -169,7 +167,6 @@ export function BookingForm({ service }: BookingFormProps) {
       const token = await getTokenFromClient();
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
-      // Build structured preferences note
       const specialistName = specialistTiers.find((t) => t.id === selectedSpecialist)?.name;
       const addOnNames = selectedAddOns
         .map((id) => availableAddOns.find((a) => a.id === id)?.name)
@@ -219,7 +216,6 @@ export function BookingForm({ service }: BookingFormProps) {
 
   return (
     <div className="rounded-xl border border-amber-200/80 bg-card p-6 shadow-sm">
-      {/* Header Pricing & Duration */}
       <div className="flex items-center justify-between pb-4 border-b border-border/80">
         <div>
           <span className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Standard Base Fee</span>
@@ -253,7 +249,6 @@ export function BookingForm({ service }: BookingFormProps) {
             </div>
           )}
 
-          {/* 1. Preferred Date */}
           <div>
             <label className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
               <Calendar className="size-4 text-amber-600" />
@@ -271,7 +266,6 @@ export function BookingForm({ service }: BookingFormProps) {
             </div>
           </div>
 
-          {/* 2. Time Slot Option */}
           <div>
             <label className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
               <Clock className="size-4 text-amber-600" />
@@ -291,7 +285,6 @@ export function BookingForm({ service }: BookingFormProps) {
             </select>
           </div>
 
-          {/* 3. Specialist Tier Option */}
           <div>
             <label className="block text-sm font-semibold text-foreground mb-2 flex items-center gap-1.5">
               <Crown className="size-4 text-amber-600" />
@@ -324,7 +317,6 @@ export function BookingForm({ service }: BookingFormProps) {
             </div>
           </div>
 
-          {/* 4. Luxury Add-On Treatments Option */}
           <div>
             <label className="block text-sm font-semibold text-foreground mb-2 flex items-center gap-1.5">
               <Sparkles className="size-4 text-amber-600" />
@@ -363,7 +355,6 @@ export function BookingForm({ service }: BookingFormProps) {
             </div>
           </div>
 
-          {/* 5. Hospitality & Comfort Preferences */}
           <div className="pt-2 border-t border-border/60 space-y-3">
             <div>
               <label className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
@@ -397,7 +388,6 @@ export function BookingForm({ service }: BookingFormProps) {
             </label>
           </div>
 
-          {/* 6. Special Requests */}
           <div>
             <label className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
               <MessageSquare className="size-4 text-amber-600" />
@@ -412,7 +402,6 @@ export function BookingForm({ service }: BookingFormProps) {
             />
           </div>
 
-          {/* Summary Box */}
           <div className="rounded-lg bg-amber-50/70 border border-amber-200/80 p-4 space-y-1.5 text-sm text-amber-950">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Base Treatment:</span>

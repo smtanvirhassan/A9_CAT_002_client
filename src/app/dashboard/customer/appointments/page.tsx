@@ -103,7 +103,7 @@ export default function MyAppointmentsPage() {
       }
 
       if (data.url) {
-        // Redirect customer to Stripe Checkout
+
         window.location.href = data.url;
       }
     } catch (err: any) {
@@ -115,7 +115,6 @@ export default function MyAppointmentsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div>
         <h1 className="text-2xl font-serif font-semibold text-foreground">
           My Appointments
@@ -125,7 +124,6 @@ export default function MyAppointmentsPage() {
         </p>
       </div>
 
-      {/* Appointments List / Table */}
       {loading ? (
         <div className="rounded-xl border border-border/80 bg-card p-12 text-center text-xs text-muted-foreground flex items-center justify-center gap-2">
           <Loader2 className="size-4 animate-spin text-amber-600" />
@@ -154,7 +152,6 @@ export default function MyAppointmentsPage() {
                 className="rounded-2xl border border-border/80 bg-card p-5 shadow-sm transition-all hover:border-amber-300/60"
               >
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                  {/* Service Info & Thumbnail */}
                   <div className="flex items-center gap-4">
                     {app.serviceImage ? (
                       <div className="relative size-16 shrink-0 overflow-hidden rounded-xl bg-muted border border-border">
@@ -205,10 +202,8 @@ export default function MyAppointmentsPage() {
                     </div>
                   </div>
 
-                  {/* Status Badges & Actions */}
                   <div className="flex flex-wrap md:flex-col items-end gap-3 self-end md:self-center">
                     <div className="flex items-center gap-2">
-                      {/* Appointment Status Badge */}
                       <span
                         className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider ${
                           isConfirmed
@@ -224,7 +219,6 @@ export default function MyAppointmentsPage() {
                         {app.status}
                       </span>
 
-                      {/* Payment Status Badge */}
                       <span
                         className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider ${
                           isPaid
@@ -237,7 +231,6 @@ export default function MyAppointmentsPage() {
                       </span>
                     </div>
 
-                    {/* Actions: Cancel (Pending only) and Pay Now (Confirmed & Unpaid only) */}
                     <div className="flex items-center gap-2 pt-1">
                       {isPending && (
                         <Button

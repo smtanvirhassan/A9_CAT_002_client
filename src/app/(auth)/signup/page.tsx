@@ -33,7 +33,6 @@ export default function SignUpPage() {
   const [password, setPassword] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  // Validation criteria
   const isMinLength = password.length >= 6;
   const hasUpperCase = /[A-Z]/.test(password);
   const hasLowerCase = /[a-z]/.test(password);
@@ -70,7 +69,7 @@ export default function SignUpPage() {
     const finalImage = imageUrl || (formData.get("image") as string) || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80";
 
     try {
-      // Public registration strictly assigns role: "customer"
+
       const { data, error } = await authClient.signUp.email({
         name,
         email,
@@ -121,7 +120,6 @@ export default function SignUpPage() {
         <CardContent>
           <form onSubmit={handleSignUp} className="space-y-4">
             <FieldGroup>
-              {/* Google Social Login */}
               <Field>
                 <Button
                   variant="outline"
@@ -162,7 +160,6 @@ export default function SignUpPage() {
                 </span>
               </div>
 
-              {/* Full Name */}
               <Field>
                 <FieldLabel htmlFor="name">Full Name</FieldLabel>
                 <div className="relative">
@@ -178,7 +175,6 @@ export default function SignUpPage() {
                 </div>
               </Field>
 
-              {/* Email */}
               <Field>
                 <FieldLabel htmlFor="email">Email Address</FieldLabel>
                 <div className="relative">
@@ -194,7 +190,6 @@ export default function SignUpPage() {
                 </div>
               </Field>
 
-              {/* Profile Image (File Upload or URL) */}
               <Field>
                 <FieldLabel htmlFor="image">Profile Image</FieldLabel>
                 <div className="flex flex-col gap-2">
@@ -228,7 +223,6 @@ export default function SignUpPage() {
                 </div>
               </Field>
 
-              {/* Password */}
               <Field>
                 <FieldLabel htmlFor="password">Password</FieldLabel>
                 <div className="relative">
@@ -245,7 +239,6 @@ export default function SignUpPage() {
                   />
                 </div>
 
-                {/* Password Rules Checklist */}
                 <div className="mt-2.5 rounded-lg border border-border/70 bg-muted/40 p-3 space-y-1 text-xs">
                   <p className="font-medium text-foreground mb-1">Password Requirements:</p>
                   <div className="flex items-center gap-2">
@@ -281,7 +274,6 @@ export default function SignUpPage() {
                 </div>
               </Field>
 
-              {/* Submit */}
               <Field className="pt-2">
                 <Button
                   type="submit"

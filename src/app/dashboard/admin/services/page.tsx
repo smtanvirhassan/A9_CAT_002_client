@@ -38,11 +38,9 @@ export default function ManageServicesPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
-  // Modal / Form state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingService, setEditingService] = useState<IService | null>(null);
 
-  // Form fields
   const [serviceName, setServiceName] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [description, setDescription] = useState("");
@@ -58,7 +56,7 @@ export default function ManageServicesPage() {
     setLoading(true);
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
-      // Admin requests all services including inactive
+
       const res = await fetch(`${apiUrl}/services?status=all`);
       if (res.ok) {
         const data = await res.json();
@@ -251,7 +249,6 @@ export default function ManageServicesPage() {
 
   return (
     <div className="space-y-6">
-      {/* Top Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-serif font-semibold text-foreground">
@@ -267,7 +264,6 @@ export default function ManageServicesPage() {
         </Button>
       </div>
 
-      {/* Search Input */}
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-2.5 size-4 text-muted-foreground" />
         <Input
@@ -278,7 +274,6 @@ export default function ManageServicesPage() {
         />
       </div>
 
-      {/* Services Table */}
       {loading ? (
         <div className="rounded-xl border border-border/80 bg-card p-12 text-center text-xs text-muted-foreground flex items-center justify-center gap-2">
           <Loader2 className="size-4 animate-spin text-amber-600" />
@@ -379,7 +374,6 @@ export default function ManageServicesPage() {
         </div>
       )}
 
-      {/* Add / Edit Service Modal Dialog */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
           <div className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl space-y-4 my-8">
@@ -396,7 +390,6 @@ export default function ManageServicesPage() {
             </div>
 
             <form onSubmit={handleSaveService} className="space-y-4 text-xs">
-              {/* Service Name */}
               <div>
                 <label className="block font-medium text-foreground mb-1">
                   Service Name *
@@ -409,7 +402,6 @@ export default function ManageServicesPage() {
                 />
               </div>
 
-              {/* Category */}
               <div>
                 <label className="block font-medium text-foreground mb-1">
                   Category *
@@ -427,7 +419,6 @@ export default function ManageServicesPage() {
                 </select>
               </div>
 
-              {/* Price & Duration */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block font-medium text-foreground mb-1">
@@ -459,7 +450,6 @@ export default function ManageServicesPage() {
                 </div>
               </div>
 
-              {/* Service Image (Upload; Not Image URL requirement) */}
               <div>
                 <label className="block font-medium text-foreground mb-1">
                   Service Image (File Upload) *
@@ -490,7 +480,6 @@ export default function ManageServicesPage() {
                 </div>
               </div>
 
-              {/* Description */}
               <div>
                 <label className="block font-medium text-foreground mb-1">
                   Description *
@@ -505,7 +494,6 @@ export default function ManageServicesPage() {
                 />
               </div>
 
-              {/* Status */}
               <div>
                 <label className="block font-medium text-foreground mb-1">
                   Service Status *
@@ -532,7 +520,6 @@ export default function ManageServicesPage() {
                 </div>
               </div>
 
-              {/* Actions */}
               <div className="flex items-center justify-end gap-3 pt-4 border-t border-border">
                 <Button
                   type="button"

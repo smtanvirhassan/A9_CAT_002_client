@@ -4,7 +4,7 @@ export interface IService {
   category: string;
   description: string;
   price: number;
-  duration: number; // in minutes
+  duration: number;
   image: string;
   status: "active" | "inactive";
   createdAt?: string;

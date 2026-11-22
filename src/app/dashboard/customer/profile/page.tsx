@@ -143,7 +143,6 @@ export default function CustomerProfilePage() {
             </div>
           ) : (
             <form onSubmit={handleSaveProfile} className="space-y-5">
-              {/* Profile Avatar Preview & Upload */}
               <div className="flex items-center gap-5 pb-4 border-b border-border/60">
                 <div className="relative size-20 shrink-0 overflow-hidden rounded-full border-2 border-amber-300 bg-muted">
                   {image ? (
@@ -179,7 +178,6 @@ export default function CustomerProfilePage() {
               </div>
 
               <FieldGroup className="space-y-4">
-                {/* Full Name */}
                 <Field>
                   <FieldLabel htmlFor="name">Full Name</FieldLabel>
                   <div className="relative">
@@ -194,7 +192,6 @@ export default function CustomerProfilePage() {
                   </div>
                 </Field>
 
-                {/* Email Address (Read-only for security) */}
                 <Field>
                   <FieldLabel htmlFor="email">Email Address</FieldLabel>
                   <div className="relative">
@@ -211,7 +208,6 @@ export default function CustomerProfilePage() {
                   </p>
                 </Field>
 
-                {/* Phone Number */}
                 <Field>
                   <FieldLabel htmlFor="phone">Phone Number</FieldLabel>
                   <div className="relative">
@@ -227,7 +223,6 @@ export default function CustomerProfilePage() {
                   </div>
                 </Field>
 
-                {/* Profile Image URL */}
                 <Field>
                   <FieldLabel htmlFor="image">Profile Image URL</FieldLabel>
                   <Input
@@ -239,7 +234,6 @@ export default function CustomerProfilePage() {
                   />
                 </Field>
 
-                {/* Save Button */}
                 <div className="pt-3">
                   <Button
                     type="submit"

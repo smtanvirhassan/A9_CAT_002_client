@@ -57,7 +57,6 @@ export function WhyChooseUs() {
   return (
     <section className="py-16 sm:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-sm font-semibold uppercase tracking-wider text-amber-700">
             The SalonBook Standard
@@ -70,7 +69,6 @@ export function WhyChooseUs() {
           </p>
         </div>
 
-        {/* 4 Feature Pillars */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {features.map((item) => {
             const Icon = item.icon;
@@ -89,7 +87,6 @@ export function WhyChooseUs() {
           })}
         </div>
 
-        {/* Expanded 3 Verified Testimonials Grid */}
         <div className="mt-12">
           <div className="flex items-center justify-between mb-6">
             <div>

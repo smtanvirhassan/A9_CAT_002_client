@@ -93,7 +93,6 @@ export default function ManageAppointmentsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-serif font-semibold text-foreground">
@@ -104,7 +103,6 @@ export default function ManageAppointmentsPage() {
           </p>
         </div>
 
-        {/* Filter Pills */}
         <div className="flex items-center gap-1.5 bg-card border border-border p-1 rounded-lg">
           {(["all", "pending", "confirmed", "cancelled"] as const).map((st) => (
             <button
@@ -122,7 +120,6 @@ export default function ManageAppointmentsPage() {
         </div>
       </div>
 
-      {/* Appointments List */}
       {loading ? (
         <div className="rounded-xl border border-border/80 bg-card p-12 text-center text-xs text-muted-foreground flex items-center justify-center gap-2">
           <Loader2 className="size-4 animate-spin text-amber-600" />
@@ -157,7 +154,6 @@ export default function ManageAppointmentsPage() {
 
                 return (
                   <tr key={app._id} className="hover:bg-muted/20 transition-colors">
-                    {/* Customer */}
                     <td className="px-5 py-3.5">
                       <div className="space-y-0.5">
                         <p className="font-semibold text-foreground text-sm flex items-center gap-1.5">
@@ -176,7 +172,6 @@ export default function ManageAppointmentsPage() {
                       </div>
                     </td>
 
-                    {/* Service */}
                     <td className="px-4 py-3.5">
                       <p className="font-semibold text-foreground">{app.serviceName}</p>
                       <span className="text-[11px] text-muted-foreground">
@@ -184,18 +179,15 @@ export default function ManageAppointmentsPage() {
                       </span>
                     </td>
 
-                    {/* Date & Slot */}
                     <td className="px-4 py-3.5 whitespace-nowrap">
                       <p className="font-medium text-foreground">{app.appointmentDate}</p>
                       <p className="text-muted-foreground text-[11px]">{app.timeSlot}</p>
                     </td>
 
-                    {/* Price */}
                     <td className="px-4 py-3.5 font-bold text-foreground text-sm">
                       ${app.servicePrice}
                     </td>
 
-                    {/* Appointment Status */}
                     <td className="px-4 py-3.5">
                       <span
                         className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-wider ${
@@ -210,7 +202,6 @@ export default function ManageAppointmentsPage() {
                       </span>
                     </td>
 
-                    {/* Payment Status */}
                     <td className="px-4 py-3.5">
                       <span
                         className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-wider ${
@@ -224,7 +215,6 @@ export default function ManageAppointmentsPage() {
                       </span>
                     </td>
 
-                    {/* Actions: Confirm (pending only), Cancel (pending or confirmed) */}
                     <td className="px-5 py-3.5 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-1.5">
                         {isPending && (

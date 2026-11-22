@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 export function Banner() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-amber-950 via-stone-900 to-amber-900 text-white py-20 lg:py-32">
-      {/* Salon-Themed Background Image with overlay */}
       <div className="absolute inset-0 z-0">
         <Image
           src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1920&q=80"
@@ -58,7 +57,6 @@ export function Banner() {
             </Link>
           </div>
 
-          {/* Highlights / Badges */}
           <div className="grid grid-cols-3 gap-6 pt-8 border-t border-stone-800/80 text-sm text-stone-300">
             <div>
               <p className="font-bold text-2xl text-amber-300">100%</p>

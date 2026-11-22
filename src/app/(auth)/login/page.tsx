@@ -51,7 +51,7 @@ function LoginForm() {
       }
 
       toast.success("Welcome back to SalonBook!");
-      
+
       const session = await authClient.getSession();
       const user = session?.data?.user as any;
 
@@ -96,7 +96,6 @@ function LoginForm() {
       <CardContent>
         <form onSubmit={handleEmailLogin} className="space-y-4">
           <FieldGroup>
-            {/* Google Social Login */}
             <Field>
               <Button
                 variant="outline"
@@ -137,7 +136,6 @@ function LoginForm() {
               </span>
             </div>
 
-            {/* Email Input */}
             <Field>
               <FieldLabel htmlFor="email">Email Address</FieldLabel>
               <div className="relative">
@@ -153,7 +151,6 @@ function LoginForm() {
               </div>
             </Field>
 
-            {/* Password Input */}
             <Field>
               <div className="flex items-center justify-between">
                 <FieldLabel htmlFor="password">Password</FieldLabel>
@@ -171,7 +168,6 @@ function LoginForm() {
               </div>
             </Field>
 
-            {/* Submit Button */}
             <Field className="pt-2">
               <Button
                 type="submit"

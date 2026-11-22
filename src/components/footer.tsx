@@ -6,7 +6,6 @@ export function Footer() {
     <footer className="w-full border-t border-border bg-amber-950 text-amber-50">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          {/* Col 1: Brand & Description */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tight">
               <span className="flex size-9 items-center justify-center rounded-lg bg-amber-600 text-white shadow-sm">
@@ -19,7 +18,6 @@ export function Footer() {
             <p className="text-sm text-amber-200/80 leading-relaxed">
               Your premier destination for luxury hair styling, restorative skincare, and relaxing spa therapies. Book appointments with master stylists online anytime.
             </p>
-            {/* Social Media Links */}
             <div className="flex items-center gap-3 pt-2">
               <a
                 href="https://instagram.com"
@@ -57,7 +55,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Important Navigation Links */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-amber-300">
               Navigation
@@ -91,7 +88,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Address & Hours */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-amber-300">
               Salon Hours & Location
@@ -112,7 +108,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 4: Contact Information */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-amber-300">
               Contact Us
@@ -139,7 +134,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom: Copyright */}
         <div className="mt-12 border-t border-amber-900/60 pt-6 text-center text-xs text-amber-300/60 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>© {new Date().getFullYear()} SalonBook Platform. All rights reserved.</p>
           <p className="flex items-center gap-4">

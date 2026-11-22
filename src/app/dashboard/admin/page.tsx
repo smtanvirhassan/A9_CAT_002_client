@@ -100,7 +100,6 @@ export default function AdminOverviewPage() {
 
   return (
     <div className="space-y-8">
-      {/* Header Banner */}
       <div className="rounded-2xl border border-stone-800 bg-stone-900 p-6 sm:p-8 text-white shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <span className="text-xs uppercase tracking-wider text-amber-400 font-semibold">
@@ -127,7 +126,6 @@ export default function AdminOverviewPage() {
         </div>
       </div>
 
-      {/* 6 Metric Statistics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {metricCards.map((metric) => {
           const Icon = metric.icon;

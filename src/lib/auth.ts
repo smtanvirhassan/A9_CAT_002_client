@@ -7,7 +7,7 @@ import { jwt } from "better-auth/plugins";
 try {
   dns.setServers(["8.8.8.8", "1.1.1.1"]);
 } catch (e) {
-  // Ignore in restricted environments
+
 }
 
 const client = new MongoClient(process.env.MONGODB_URI as string);

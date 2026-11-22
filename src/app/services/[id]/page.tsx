@@ -10,7 +10,7 @@ import type { IService } from "@/lib/types/service";
 async function getService(id: string): Promise<IService | null> {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
-    // We can query server endpoint
+
     const res = await fetch(`${apiUrl}/services`, { cache: "no-store" });
     if (!res.ok) return null;
     const services: IService[] = await res.json();
@@ -29,7 +29,6 @@ export default async function ServiceDetailsPage({
 }) {
   const { id } = await params;
 
-  // Server-side session verification
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -73,7 +72,6 @@ export default async function ServiceDetailsPage({
   return (
     <main className="min-h-screen py-10 sm:py-16 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Navigation Breadcrumb */}
         <div className="mb-6">
           <Link
             href="/services"
@@ -84,11 +82,8 @@ export default async function ServiceDetailsPage({
           </Link>
         </div>
 
-        {/* Main Grid: Left Details & Right Booking Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Column: Service Media & In-depth Details (7 cols) */}
           <div className="lg:col-span-7 space-y-8">
-            {/* Hero Image */}
             <div className="relative h-72 sm:h-96 w-full overflow-hidden rounded-2xl border border-border shadow-md">
               <Image
                 src={service.image}
@@ -108,7 +103,6 @@ export default async function ServiceDetailsPage({
               )}
             </div>
 
-            {/* Title & Key Specs */}
             <div>
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
                 <Scissors className="size-3.5" />
@@ -136,7 +130,6 @@ export default async function ServiceDetailsPage({
               </div>
             </div>
 
-            {/* Description */}
             <div className="space-y-3">
               <h2 className="text-xl font-serif font-semibold text-foreground">
                 Treatment Overview
@@ -146,7 +139,6 @@ export default async function ServiceDetailsPage({
               </p>
             </div>
 
-            {/* Included Service Perks */}
             <div className="space-y-4 rounded-xl border border-border/80 bg-muted/20 p-6">
               <h3 className="text-sm font-semibold text-foreground">
                 What&apos;s Included With This Appointment:
@@ -162,7 +154,6 @@ export default async function ServiceDetailsPage({
             </div>
           </div>
 
-          {/* Right Column: Appointment Booking Option (5 cols) */}
           <div className="lg:col-span-5 sticky top-24">
             <BookingForm service={service} />
           </div>

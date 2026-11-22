@@ -141,7 +141,6 @@ export default function ManageUsersPage() {
 
                 return (
                   <tr key={id} className="hover:bg-muted/20 transition-colors">
-                    {/* User Info */}
                     <td className="px-5 py-3.5">
                       <div className="flex items-center gap-3">
                         <div className="relative size-10 shrink-0 overflow-hidden rounded-full bg-muted border border-border">
@@ -167,17 +166,14 @@ export default function ManageUsersPage() {
                       </div>
                     </td>
 
-                    {/* Email */}
                     <td className="px-4 py-3.5 font-medium text-foreground">
                       {u.email}
                     </td>
 
-                    {/* Phone */}
                     <td className="px-4 py-3.5 text-muted-foreground">
                       {u.phone || "Not provided"}
                     </td>
 
-                    {/* Role */}
                     <td className="px-4 py-3.5">
                       <span
                         className={`inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-wider ${
@@ -190,7 +186,6 @@ export default function ManageUsersPage() {
                       </span>
                     </td>
 
-                    {/* Access Status */}
                     <td className="px-4 py-3.5">
                       <span
                         className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-wider ${
@@ -204,7 +199,6 @@ export default function ManageUsersPage() {
                       </span>
                     </td>
 
-                    {/* Action */}
                     <td className="px-5 py-3.5 text-right">
                       {isAdmin ? (
                         <span className="text-[11px] text-muted-foreground italic">Admin Account</span>

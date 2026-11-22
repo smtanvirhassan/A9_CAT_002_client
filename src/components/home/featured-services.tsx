@@ -58,7 +58,6 @@ export function FeaturedServices({ services }: FeaturedServicesProps) {
           </Link>
         </div>
 
-        {/* Category Tabs for Instant Filtering */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 border-b border-border/40 scrollbar-none">
           <div className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground pr-2 hidden sm:flex">
             <SlidersHorizontal className="size-4" />
@@ -102,7 +101,6 @@ export function FeaturedServices({ services }: FeaturedServicesProps) {
               ))}
             </div>
 
-            {/* Prominent Highlight CTA Banner */}
             <div className="mt-14 flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-200 dark:border-amber-900/40 p-6 sm:p-8">
               <div>
                 <h3 className="text-xl font-serif font-medium text-foreground">

@@ -121,13 +121,11 @@ const PERKS: PerkItem[] = [
 export function MarqueeSection() {
   return (
     <section className="relative overflow-hidden bg-stone-950 text-stone-100 py-10 sm:py-14 border-y border-amber-500/20 select-none">
-      {/* Background ambient lighting */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 size-96 rounded-full bg-amber-600/10 blur-3xl" />
         <div className="absolute top-1/2 right-1/4 -translate-y-1/2 size-96 rounded-full bg-amber-800/10 blur-3xl" />
       </div>
 
-      {/* Top Header Badge */}
       <div className="relative z-10 mx-auto max-w-7xl px-4 text-center mb-6 sm:mb-8">
         <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-widest text-amber-300 backdrop-blur-md">
           <Sparkles className="size-3 text-amber-400" />
@@ -137,13 +135,10 @@ export function MarqueeSection() {
         </div>
       </div>
 
-      {/* Edge gradient mask container */}
       <div className="relative z-10 pause-hover space-y-4 sm:space-y-5 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-        
-        {/* Row 1: Partner Brands (Scroll Left) */}
+
         <div className="overflow-hidden">
           <div className="animate-marquee flex items-center gap-4">
-            {/* First sequence */}
             {BRANDS.map((brand, idx) => (
               <div
                 key={`b1-${idx}`}
@@ -168,7 +163,6 @@ export function MarqueeSection() {
               </div>
             ))}
 
-            {/* Repeated sequence for seamless loop */}
             {BRANDS.map((brand, idx) => (
               <div
                 key={`b2-${idx}`}
@@ -195,10 +189,8 @@ export function MarqueeSection() {
           </div>
         </div>
 
-        {/* Row 2: Salon Perks & Guarantees (Scroll Right / Reversed) */}
         <div className="overflow-hidden">
           <div className="animate-marquee-reverse flex items-center gap-4">
-            {/* First sequence */}
             {PERKS.map((perk, idx) => {
               const IconComponent = perk.icon;
               return (
@@ -221,7 +213,6 @@ export function MarqueeSection() {
               );
             })}
 
-            {/* Repeated sequence for seamless loop */}
             {PERKS.map((perk, idx) => {
               const IconComponent = perk.icon;
               return (
