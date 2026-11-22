@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { auth } from "./lib/auth";
-import { headers } from "next/headers";
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -10,26 +8,14 @@ export async function proxy(request: NextRequest) {
   const isDashboard = pathname.startsWith("/dashboard");
 
   if (isProtectedService || isDashboard) {
-    try {
-      const session = await auth.api.getSession({
-        headers: await headers(),
-      });
+    const sessionCookie =
+      request.cookies.get("__Secure-better-auth.session_token") ||
+      request.cookies.get("better-auth.session_token");
 
-      const user = session?.user;
-      if (!user) {
-        const loginUrl = new URL("/login", request.url);
-        loginUrl.searchParams.set("callbackUrl", pathname);
-        return NextResponse.redirect(loginUrl);
-      }
-
-      if (pathname.startsWith("/dashboard/admin") && (user as any).role !== "admin") {
-        return NextResponse.redirect(new URL("/dashboard/customer", request.url));
-      }
-      if (pathname.startsWith("/dashboard/customer") && (user as any).role === "admin") {
-        return NextResponse.redirect(new URL("/dashboard/admin", request.url));
-      }
-    } catch (e) {
-      return NextResponse.redirect(new URL("/login", request.url));
+    if (!sessionCookie) {
+      const loginUrl = new URL("/login", request.url);
+      loginUrl.searchParams.set("callbackUrl", pathname);
+      return NextResponse.redirect(loginUrl);
     }
   }
 
