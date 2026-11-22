@@ -7,9 +7,15 @@ export default async function CustomerLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  let session = null;
+  try {
+    session = await auth.api.getSession({
+      headers: await headers(),
+    });
+  } catch (err: any) {
+    if (err?.digest === "DYNAMIC_SERVER_USAGE") throw err;
+    console.error("CustomerLayout auth session error:", err);
+  }
 
   if (!session?.user) {
     redirect("/login");

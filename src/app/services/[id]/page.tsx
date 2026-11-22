@@ -29,9 +29,15 @@ export default async function ServiceDetailsPage({
 }) {
   const { id } = await params;
 
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  let session = null;
+  try {
+    session = await auth.api.getSession({
+      headers: await headers(),
+    });
+  } catch (err) {
+    if (err?.digest === "DYNAMIC_SERVER_USAGE") throw err;
+    console.error("ServiceDetailsPage auth session error:", err);
+  }
 
   if (!session?.user) {
     redirect(`/login?callbackUrl=/services/${id}`);
