@@ -79,6 +79,10 @@ The official Next.js 16 frontend application for the **SalonBook** salon appoint
    npm start
    ```
 
+## Live Deployment
+- **Live Website**: [https://client-one-psi.vercel.app](https://client-one-psi.vercel.app)
+- **API Server Endpoint**: [https://server-gold-chi-58.vercel.app](https://server-gold-chi-58.vercel.app)
+
 ## Repository Links
 - **Client Repository**: [https://github.com/smtanvirhassan/A9_CAT_002_client](https://github.com/smtanvirhassan/A9_CAT_002_client)
 - **Server Repository**: [https://github.com/smtanvirhassan/A9_CAT_002_server](https://github.com/smtanvirhassan/A9_CAT_002_server)
