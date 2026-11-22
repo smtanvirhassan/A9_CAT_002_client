@@ -80,5 +80,5 @@ The official Next.js 16 frontend application for the **SalonBook** salon appoint
    ```
 
 ## Repository Links
-- **Client**: `.`
-- **Server**: `../server`
+- **Client Repository**: [https://github.com/smtanvirhassan/A9_CAT_002_client](https://github.com/smtanvirhassan/A9_CAT_002_client)
+- **Server Repository**: [https://github.com/smtanvirhassan/A9_CAT_002_server](https://github.com/smtanvirhassan/A9_CAT_002_server)
