@@ -84,7 +84,7 @@ export default function SignUpPage() {
       }
 
       toast.success("Account created successfully! Welcome to SalonBook.");
-      router.push("/dashboard/customer");
+      window.location.href = "/dashboard/customer";
     } catch (err: any) {
       toast.error(err.message || "An unexpected error occurred during signup.");
     } finally {

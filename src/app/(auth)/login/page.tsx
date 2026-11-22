@@ -53,15 +53,16 @@ function LoginForm() {
       toast.success("Welcome back to SalonBook!");
 
       const session = await authClient.getSession();
-      const user = session?.data?.user as any;
+      const user = ((data as any)?.user || session?.data?.user) as any;
 
-      if (callbackUrl && callbackUrl !== "/") {
-        router.push(callbackUrl);
-      } else if (user?.role === "admin") {
-        router.push("/dashboard/admin");
-      } else {
-        router.push("/dashboard/customer");
-      }
+      const targetUrl =
+        callbackUrl && callbackUrl !== "/"
+          ? callbackUrl
+          : user?.role === "admin"
+          ? "/dashboard/admin"
+          : "/dashboard/customer";
+
+      window.location.href = targetUrl;
     } catch (err: any) {
       toast.error(err.message || "An unexpected error occurred during login.");
     } finally {
