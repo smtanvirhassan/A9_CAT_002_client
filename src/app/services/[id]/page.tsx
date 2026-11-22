@@ -16,7 +16,7 @@ async function getService(id: string): Promise<IService | null> {
     const services: IService[] = await res.json();
     const service = services.find((s) => s._id === id);
     return service || null;
-  } catch (err) {
+  } catch (err: any) {
     console.error("Error fetching service:", err);
     return null;
   }
@@ -34,7 +34,7 @@ export default async function ServiceDetailsPage({
     session = await auth.api.getSession({
       headers: await headers(),
     });
-  } catch (err) {
+  } catch (err: any) {
     if (err?.digest === "DYNAMIC_SERVER_USAGE") throw err;
     console.error("ServiceDetailsPage auth session error:", err);
   }
