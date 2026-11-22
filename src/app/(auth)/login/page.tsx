@@ -72,10 +72,14 @@ function LoginForm() {
   const handleGoogleLogin = async () => {
     setGoogleLoading(true);
     try {
-      await authClient.signIn.social({
+      const res = await authClient.signIn.social({
         provider: "google",
         callbackURL: callbackUrl || "/dashboard/customer",
       });
+      if (res?.error) {
+        toast.error(res.error.message || "Google authentication failed.");
+        setGoogleLoading(false);
+      }
     } catch (err: any) {
       toast.error(err.message || "Google authentication failed.");
       setGoogleLoading(false);

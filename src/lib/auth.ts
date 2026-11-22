@@ -4,16 +4,32 @@ import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { jwt } from "better-auth/plugins";
 
-try {
-  dns.setServers(["8.8.8.8", "1.1.1.1"]);
-} catch (e) {
-
+if (process.platform === "win32" && !process.env.VERCEL) {
+  try {
+    dns.setServers(["8.8.8.8", "1.1.1.1"]);
+  } catch (e) {}
 }
 
-const client = new MongoClient(process.env.MONGODB_URI as string);
+declare global {
+  var _mongoClient: MongoClient | undefined;
+}
+
+const uri = process.env.MONGODB_URI as string;
+let client: MongoClient;
+if (!global._mongoClient) {
+  global._mongoClient = new MongoClient(uri, {
+    maxPoolSize: 10,
+    serverSelectionTimeoutMS: 10000,
+  });
+}
+client = global._mongoClient;
 const db = client.db("salonbook");
 
 export const auth = betterAuth({
+  baseURL:
+    process.env.BETTER_AUTH_URL ||
+    process.env.NEXT_PUBLIC_CLIENT_URL ||
+    "https://client-one-psi.vercel.app",
   database: mongodbAdapter(db, {
     client,
   }),
