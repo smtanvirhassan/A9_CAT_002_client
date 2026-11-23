@@ -32,12 +32,12 @@ function getClient(): MongoClient {
         current.close().catch(() => {});
       } catch (e) {}
     }
-    global._mongoClient = new MongoClient(uri, {
+    const newClient = new MongoClient(uri, {
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 5000,
-      connectTimeoutMS: 5000,
-      socketTimeoutMS: 15000,
     });
+    newClient.connect().catch(() => {});
+    global._mongoClient = newClient;
   }
   return global._mongoClient!;
 }
@@ -55,46 +55,9 @@ const clientProxy = new Proxy({} as MongoClient, {
 
 const dbProxy = new Proxy({} as Db, {
   get(_target, prop) {
-    const c = getClient();
-    const d = c.db("salonbook");
+    const d = getClient().db("salonbook");
     const val = (d as any)[prop];
     if (typeof val === "function") {
-      if (prop === "collection") {
-        return (name: string, options?: any) => {
-          const col = d.collection(name, options);
-          return new Proxy(col, {
-            get(targetCol, colProp) {
-              const colVal = (targetCol as any)[colProp];
-              if (typeof colVal === "function") {
-                return async (...args: any[]) => {
-                  try {
-                    return await colVal.apply(targetCol, args);
-                  } catch (err: any) {
-                    if (
-                      err?.name === "MongoTopologyClosedError" ||
-                      err?.message?.includes("Topology is closed") ||
-                      err?.message?.includes("connection pool is closed")
-                    ) {
-                      console.warn("Recovering from closed Mongo topology, recreating client...");
-                      const freshClient = new MongoClient(uri, {
-                        maxPoolSize: 10,
-                        serverSelectionTimeoutMS: 5000,
-                        connectTimeoutMS: 5000,
-                        socketTimeoutMS: 15000,
-                      });
-                      global._mongoClient = freshClient;
-                      const freshCol = freshClient.db("salonbook").collection(name, options);
-                      return await (freshCol as any)[colProp].apply(freshCol, args);
-                    }
-                    throw err;
-                  }
-                };
-              }
-              return colVal;
-            },
-          });
-        };
-      }
       return val.bind(d);
     }
     return val;
