@@ -36,7 +36,7 @@ function LoginForm() {
     if (!isPending && session?.user) {
       const user = session.user as any;
       const targetUrl =
-        callbackUrl && callbackUrl !== "/"
+        callbackUrl && callbackUrl !== "/" && !callbackUrl.startsWith("/login")
           ? callbackUrl
           : user?.role === "admin"
           ? "/dashboard/admin"
@@ -84,11 +84,14 @@ function LoginForm() {
 
       toast.success("Welcome back to SalonBook!");
 
-      const session = await authClient.getSession();
-      const user = ((data as any)?.user || session?.data?.user) as any;
+      let user = (data as any)?.user;
+      if (!user) {
+        const session = await authClient.getSession().catch(() => null);
+        user = session?.data?.user;
+      }
 
       const targetUrl =
-        callbackUrl && callbackUrl !== "/"
+        callbackUrl && callbackUrl !== "/" && !callbackUrl.startsWith("/login")
           ? callbackUrl
           : user?.role === "admin"
           ? "/dashboard/admin"
