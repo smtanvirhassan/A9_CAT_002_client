@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Sparkles, Calendar, User, LogOut, LayoutDashboard, Scissors } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
+import { clearTokenCache } from "@/lib/getTokenFromClient";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Popover,
@@ -22,6 +23,7 @@ export function Navbar() {
   const user = session?.user as any;
 
   const handleSignout = async () => {
+    clearTokenCache();
     await authClient.signOut();
     window.location.href = "/";
   };

@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Scissors, Lock, Mail, Loader2 } from "lucide-react";
@@ -29,6 +29,38 @@ function LoginForm() {
 
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+
+  const { data: session, isPending } = authClient.useSession();
+
+  useEffect(() => {
+    if (!isPending && session?.user) {
+      const user = session.user as any;
+      const targetUrl =
+        callbackUrl && callbackUrl !== "/"
+          ? callbackUrl
+          : user?.role === "admin"
+          ? "/dashboard/admin"
+          : "/dashboard/customer";
+      router.replace(targetUrl);
+    }
+  }, [session, isPending, callbackUrl, router]);
+
+  if (!isPending && session?.user) {
+    return (
+      <Card className="w-full max-w-md border-border/80 shadow-lg p-8 text-center space-y-4">
+        <div className="mx-auto flex size-12 items-center justify-center rounded-xl bg-amber-100 text-amber-800 animate-pulse">
+          <Scissors className="size-6" />
+        </div>
+        <CardTitle className="text-xl font-serif">Already Logged In</CardTitle>
+        <CardDescription className="text-xs text-muted-foreground">
+          Redirecting to your dashboard...
+        </CardDescription>
+        <div className="flex justify-center pt-2">
+          <Loader2 className="size-5 animate-spin text-amber-700" />
+        </div>
+      </Card>
+    );
+  }
 
   const handleEmailLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

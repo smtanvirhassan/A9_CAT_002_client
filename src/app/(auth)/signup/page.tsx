@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Scissors, Lock, Mail, User, Image as ImageIcon, UploadCloud, Loader2, CheckCircle2, XCircle } from "lucide-react";
@@ -27,6 +27,35 @@ export default function SignUpPage() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
+  const { data: session, isPending } = authClient.useSession();
+
+  useEffect(() => {
+    if (!isPending && session?.user) {
+      const user = session.user as any;
+      const targetUrl =
+        user?.role === "admin" ? "/dashboard/admin" : "/dashboard/customer";
+      router.replace(targetUrl);
+    }
+  }, [session, isPending, router]);
+
+  if (!isPending && session?.user) {
+    return (
+      <div className="flex min-h-[calc(100vh-12rem)] items-center justify-center px-4 py-12">
+        <Card className="w-full max-w-lg border-border/80 shadow-lg p-8 text-center space-y-4">
+          <div className="mx-auto flex size-12 items-center justify-center rounded-xl bg-amber-100 text-amber-800 animate-pulse">
+            <Scissors className="size-6" />
+          </div>
+          <CardTitle className="text-xl font-serif">Already Logged In</CardTitle>
+          <CardDescription className="text-xs text-muted-foreground">
+            Redirecting to your dashboard...
+          </CardDescription>
+          <div className="flex justify-center pt-2">
+            <Loader2 className="size-5 animate-spin text-amber-700" />
+          </div>
+        </Card>
+      </div>
+    );
+  }
   const [uploadingImage, setUploadingImage] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
 
