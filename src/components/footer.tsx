@@ -95,7 +95,7 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-amber-200/80">
               <li className="flex items-start gap-2.5">
                 <MapPin className="size-4 shrink-0 text-amber-400 mt-0.5" />
-                <span>452 Fifth Avenue, Suite 1200<br />New York, NY 10018</span>
+                <span>Kuril, Dhaka, Bangladesh</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <Clock className="size-4 shrink-0 text-amber-400 mt-0.5" />
@@ -115,14 +115,14 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-amber-200/80">
               <li className="flex items-center gap-2.5">
                 <Phone className="size-4 shrink-0 text-amber-400" />
-                <a href="tel:+15552345678" className="hover:text-white transition-colors">
-                  +1 (555) 234-5678
+                <a href="tel:+8801572904339" className="hover:text-white transition-colors">
+                  +8801572904339
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="size-4 shrink-0 text-amber-400" />
-                <a href="mailto:appointments@salonbook.com" className="hover:text-white transition-colors">
-                  appointments@salonbook.com
+                <a href="mailto:smtanvirhassan52@gmail.com" className="hover:text-white transition-colors">
+                  smtanvirhassan52@gmail.com
                 </a>
               </li>
               <li className="pt-2">
