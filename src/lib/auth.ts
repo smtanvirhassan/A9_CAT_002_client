@@ -30,6 +30,18 @@ export const auth = betterAuth({
     process.env.BETTER_AUTH_URL ||
     process.env.NEXT_PUBLIC_CLIENT_URL ||
     "https://client-one-psi.vercel.app",
+  trustedOrigins: [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:*",
+    "http://127.0.0.1:*",
+    "https://client-one-psi.vercel.app",
+    "https://*.vercel.app",
+    "*.vercel.app",
+  ],
+  advanced: {
+    trustedProxyHeaders: true,
+  },
   database: mongodbAdapter(db, {
     client,
   }),

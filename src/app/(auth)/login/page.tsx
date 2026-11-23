@@ -77,6 +77,10 @@ function LoginForm() {
         provider: "google",
         callbackURL: callbackUrl || "/dashboard/customer",
       });
+      if (res?.data?.url) {
+        window.location.href = res.data.url;
+        return;
+      }
       if (res?.error) {
         toast.error(res.error.message || "Google authentication failed.");
         setGoogleLoading(false);

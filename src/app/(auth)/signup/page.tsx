@@ -99,6 +99,10 @@ export default function SignUpPage() {
         provider: "google",
         callbackURL: "/dashboard/customer",
       });
+      if (res?.data?.url) {
+        window.location.href = res.data.url;
+        return;
+      }
       if (res?.error) {
         toast.error(res.error.message || "Google authentication failed.");
         setGoogleLoading(false);
